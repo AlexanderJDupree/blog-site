@@ -1,3 +1,3 @@
 /// Public modules for routes
 
-pub mod home;
+pub mod index;

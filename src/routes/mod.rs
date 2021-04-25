@@ -1,3 +1,1 @@
-/// Public modules for routes
-
-pub mod index;
+pub mod posts;

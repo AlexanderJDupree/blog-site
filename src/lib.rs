@@ -11,14 +11,11 @@ extern crate rocket;
 extern crate rocket_contrib;
 
 use rocket_contrib::serve::StaticFiles;
-use rocket_contrib::templates::Template;
 
-mod context;
 mod routes;
 
 pub fn rocket() -> rocket::Rocket {
     rocket::ignite()
-        .mount("/", routes![routes::index::index,])
-        .mount("/static", StaticFiles::from("./static/"))
-        .attach(Template::fairing())
+        .mount("/api/v1", routes![routes::posts::get_post])
+        .mount("/", StaticFiles::from("./client/build")) // TODO this value from a config file
 }

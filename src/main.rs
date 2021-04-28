@@ -1,5 +1,6 @@
 /// blog-site entry point - launches the rocket
 
 fn main() {
-    blog_site::rocket().launch();
+    let environment = Some(".env");
+    blog_site::rocket(environment).launch();
 }

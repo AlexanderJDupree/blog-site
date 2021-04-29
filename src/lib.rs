@@ -35,7 +35,14 @@ pub fn rocket() -> rocket::Rocket {
     let public = std::env::var("STATIC_DIR").unwrap_or_else(|_| "./client/build".to_string());
 
     rocket::ignite()
-        .mount("/api/v1", routes![health_check, routes::posts::get_post])
+        .mount(
+            "/api/v1",
+            routes![
+                health_check,
+                routes::posts::get_post,
+                routes::posts::get_posts
+            ],
+        )
         .mount("/", StaticFiles::from(public))
         .register(catchers![handle_not_found])
 }

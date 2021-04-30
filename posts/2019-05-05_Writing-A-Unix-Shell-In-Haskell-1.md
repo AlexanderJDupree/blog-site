@@ -1,22 +1,23 @@
 ---
-title: "Writing A Unix Shell in Haskell - 1"
+title: 'Writing A Unix Shell in Haskell - 1'
 categories:
-    - Blog 
-    - Guide
-    - Tutorial
-    - Projects
+  - Blog
+  - Guide
+  - Tutorial
+  - Projects
+image: /assets/images/twitter_header_photo_2.png
 tags:
-    - haskell
-    - unix
-    - linux
-    - functional
+  - haskell
+  - unix
+  - linux
+  - functional
 ---
 
-In my [previous post](https://alexanderjdupree.github.io/blog/guide/tutorial/projects/Writing-A-Unix-Shell-In-Haskell-0/) I gave some background and talked about project goals. It's not required, but I'd check it out if you haven't. 
+In my [previous post](https://alexanderjdupree.github.io/blog/guide/tutorial/projects/Writing-A-Unix-Shell-In-Haskell-0/) I gave some background and talked about project goals. It's not required, but I'd check it out if you haven't.
 
 ### Getting Started
 
-Before we can start writing code, we will need to setup the project structure and name our shell. Being the creative genius that I am (I'm not) I decided to name my unix shell **Ash** for **A**lex-**SH**ell. To build the project itself, i'm going to use [stack](https://docs.haskellstack.org/en/stable/README/). *Stack* is a cross-platform utility for building Haskell projects that is very user-friendly. Stack takes care of a lot build tasks, like downloading dependencies, behind the scenes. To get stack, run: 
+Before we can start writing code, we will need to setup the project structure and name our shell. Being the creative genius that I am (I'm not) I decided to name my unix shell **Ash** for **A**lex-**SH**ell. To build the project itself, i'm going to use [stack](https://docs.haskellstack.org/en/stable/README/). _Stack_ is a cross-platform utility for building Haskell projects that is very user-friendly. Stack takes care of a lot build tasks, like downloading dependencies, behind the scenes. To get stack, run:
 
 ```bash
 curl -sSL https://get.haskellstack.org/ | sh
@@ -30,7 +31,7 @@ sudo pacman -S stack
 
 ### Creating the Project
 
-Next we will run stack to build the basic project structure. 
+Next we will run stack to build the basic project structure.
 
 ```bash
 stack new ash
@@ -70,7 +71,8 @@ This structure will work just for most projects. However, I moved some files aro
 └── test
     └── Spec.hs
 ```
-And in the `package.yaml` file, I changed the `source-dirs:` field to `Ash/`. Whenever you make changes to your project structure, or need to add dependencies, you will need to update the `package.yaml` file to reflect those changes. 
+
+And in the `package.yaml` file, I changed the `source-dirs:` field to `Ash/`. Whenever you make changes to your project structure, or need to add dependencies, you will need to update the `package.yaml` file to reflect those changes.
 
 Because I removed the `Lib.hs` file, we will need to modify `Main.hs` before we can build and run the project. In `Main.hs` remove the `import` statements and change the main function to:
 
@@ -98,5 +100,4 @@ And we should see `"Hello World!"` printed to the console! The last thing we sho
 
 ### Conclusion
 
-That takes care of setting up the project, in my next post we will start to implement the basic lifetime and interpreter loop for Ash. If you have questions or comments, please feel free to leave them in the comment section below. Also, all the code for *Ash* can be found in my GitHub repo [here](https://docs.haskellstack.org/en/stable/README/).
-
+That takes care of setting up the project, in my next post we will start to implement the basic lifetime and interpreter loop for Ash. If you have questions or comments, please feel free to leave them in the comment section below. Also, all the code for _Ash_ can be found in my GitHub repo [here](https://docs.haskellstack.org/en/stable/README/).

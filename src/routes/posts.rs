@@ -2,14 +2,42 @@
 use glob::glob;
 use rocket_contrib::json;
 use rocket_contrib::json::JsonValue;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
+use serde_yaml;
 use std::fs::File;
 use std::io::{BufRead, BufReader, Error};
 use std::path::PathBuf;
 
-#[derive(Serialize)]
-struct PostPreview {
+#[derive(Debug, Serialize, Deserialize)]
+struct Frontmatter {
     title: String,
+    tags: Vec<String>,
+    categories: Vec<String>,
+    image: String,
+}
+
+impl Frontmatter {
+    fn new() -> Frontmatter {
+        Frontmatter {
+            title: "Article".to_string(),
+            tags: Vec::new(),
+            categories: Vec::new(),
+            image: "/assets/default.png".to_string(),
+        }
+    }
+}
+
+impl Default for Frontmatter {
+    fn default() -> Self {
+        Frontmatter::new()
+    }
+}
+
+#[derive(Debug, Serialize)]
+struct PostPreview {
+    date: String, // TODO use Datetime<UTC>
+    link: String,
+    frontmatter: Frontmatter,
     preview: String,
 }
 
@@ -45,15 +73,54 @@ pub fn get_posts(limit: Option<usize>, offset: Option<usize>) -> JsonValue {
 }
 
 fn fill_post_preview(post: PathBuf) -> Result<PostPreview, Error> {
-    let title = post.file_name().unwrap().to_str().unwrap().to_owned();
-    let file = File::open(post)?;
+    // Parse filename into date, post title
+    let components: Vec<&str> = post
+        .file_name()
+        .unwrap_or_default()
+        .to_str()
+        .unwrap_or_default()
+        .split('_')
+        .collect();
 
-    // TODO: Read front matter into struct as well and then read first line as preview
-    let preview: String = BufReader::new(file)
+    let (date, title) = match components.as_slice() {
+        [date, title] => (date.to_string(), title.to_string()),
+        _ => ("1971-01-01".to_string(), "invalid".to_string()),
+    };
+    // Convert title to posts link
+    let link = uri!(get_post: title = title.strip_suffix(".md").unwrap_or("invalid")).to_string();
+
+    // Read YAML Front Matter
+    let file = File::open(&post)?;
+    let reader = BufReader::new(file);
+
+    let frontmatter: String = reader
         .lines()
+        .skip_while(|s| s.as_ref().unwrap_or(&"".to_string()) == "---")
+        .take_while(|s| s.as_ref().unwrap_or(&"".to_string()) != "---")
+        .filter_map(Result::ok)
+        .fold(String::new(), |acc, line| [acc, line].join("\n"));
+
+    let frontmatter: Frontmatter = serde_yaml::from_str(&frontmatter).unwrap_or_default();
+
+    // Read Post preview
+    // TODO: this is horrible, there must be a way to reuse the buf reader or something
+    let file = File::open(&post)?;
+    let reader = BufReader::new(file);
+
+    let preview: String = reader
+        .lines()
+        .skip_while(|s| s.as_ref().unwrap_or(&"".to_string()) == "---")
+        .skip_while(|s| s.as_ref().unwrap_or(&"".to_string()) != "---")
+        .skip(1)
+        .skip_while(|s| s.as_ref().unwrap_or(&"".to_string()).trim().is_empty())
         .take(1)
         .filter_map(Result::ok)
         .fold(String::new(), |acc, line| acc + line.as_str());
 
-    Ok(PostPreview { title, preview })
+    Ok(PostPreview {
+        date,
+        link,
+        frontmatter,
+        preview,
+    })
 }

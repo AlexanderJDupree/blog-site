@@ -1,8 +1,6 @@
 ---
 title: 'Getting Started With Jekyll And GitHub Pages'
-header:
-  image: /assets/images/posts/jekyll-github.jpg
-  teaser: /assets/images/posts/jekyll-github-th.jpg
+image: /assets/images/posts/jekyll-github.jpg
 categories:
   - Blog
   - Guide
@@ -161,11 +159,3 @@ There is so much more that the Minimal Mistakes theme, Jekyll, and Github pages 
 - [GitHub Pages Docs](https://help.github.com/en/categories/github-pages-basics)
 
 If you liked this guide, or have suggestions, please like, comment, and share! Also, make sure you follow me on twitter, [@dev_null42](https://twitter.com/dev_null42), to keep up to date my with my latest posts and activities.
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-8670667935520247",
-    enable_page_level_ads: true
-  });
-</script>

@@ -5,6 +5,10 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 #[macro_use]
 extern crate rocket;
+
+#[macro_use]
+extern crate lazy_static;
+
 extern crate rocket_contrib;
 
 use rocket::Request;
@@ -12,7 +16,7 @@ use rocket_contrib::json;
 use rocket_contrib::json::JsonValue;
 use rocket_contrib::serve::StaticFiles;
 
-mod routes;
+pub mod routes;
 
 /// Sanity check endpoint to make sure everything is running
 #[get("/health")]

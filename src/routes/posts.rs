@@ -1,5 +1,7 @@
 //! blog-site posts resource endpoints
+
 use glob::glob;
+use lazy_static;
 use rocket_contrib::json;
 use rocket_contrib::json::JsonValue;
 use serde::{Deserialize, Serialize};
@@ -7,6 +9,11 @@ use serde_yaml;
 use std::fs::File;
 use std::io::{BufRead, BufReader, Error};
 use std::path::PathBuf;
+
+lazy_static! {
+    static ref POSTS_DIR: String =
+        std::env::var("POSTS_DIR").unwrap_or_else(|_| "posts".to_string());
+}
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Frontmatter {
@@ -33,7 +40,7 @@ impl Default for Frontmatter {
     }
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct PostPreview {
     date: String, // TODO use Datetime<UTC>
     link: String,
@@ -56,9 +63,10 @@ pub fn get_post(title: String) -> JsonValue {
 pub fn get_posts(limit: Option<usize>, offset: Option<usize>) -> JsonValue {
     let limit = limit.unwrap_or(10);
     let offset = offset.unwrap_or(0);
+    let posts_glob = format!("{}/*.md", *POSTS_DIR);
 
     // TODO paramterize posts directory
-    let posts: Vec<PostPreview> = glob("posts/*.md")
+    let posts: Vec<PostPreview> = glob(&posts_glob)
         .unwrap()
         .skip(offset)
         .take(limit)

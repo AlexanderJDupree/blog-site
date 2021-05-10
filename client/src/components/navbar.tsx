@@ -1,40 +1,52 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-
-interface NavItemProps {
-  path: string;
-  text: string;
-  activePath: string;
-}
-
-export const NavItem = ({ path, text, activePath }: NavItemProps) => {
-  let active = activePath === path ? 'active' : '';
+const Navbar = () => {
   return (
-    <li className={`nav-item ${active}`}>
-      <Link className='nav-link' to={path}>
-        {text}
-      </Link>
-    </li>
+    <nav id='nav-wrap'>
+      <a className='mobile-btn' href='#nav-wrap' title='Show navigation'>
+        Show navigation
+      </a>
+      <a className='mobile-btn' href='#home' title='Hide navigation'>
+        Hide navigation
+      </a>
+
+      <ul id='nav' className='nav'>
+        <li className='current'>
+          <a className='smoothscroll' href='#home'>
+            Home
+          </a>
+        </li>
+
+        <li>
+          <a className='smoothscroll' href='#about'>
+            About
+          </a>
+        </li>
+
+        <li>
+          <a className='smoothscroll' href='#resume'>
+            Resume
+          </a>
+        </li>
+
+        <li>
+          <a className='smoothscroll' href='#projects'>
+            Projects
+          </a>
+        </li>
+
+        <li>
+          <a className='smoothscroll' href='#blog'>
+            Blog
+          </a>
+        </li>
+
+        <li>
+          <a className='smoothscroll' href='#contact'>
+            Contact
+          </a>
+        </li>
+      </ul>
+    </nav>
   );
 };
 
-export default function Navbar() {
-  let loc = useLocation().pathname;
-
-  return (
-    <nav className='navbar navbar-expand navbar-dark bg-dark'>
-      <div className='container'>
-        <Link className='navbar-brand' to='/'>
-          adupree
-        </Link>
-
-        <div>
-          <ul className='navbar-nav ml-auto'>
-            <NavItem path='/' activePath={loc} text='Home' />
-            <NavItem path='/about' activePath={loc} text='About' />
-          </ul>
-        </div>
-      </div>
-    </nav>
-  );
-}
+export default Navbar;

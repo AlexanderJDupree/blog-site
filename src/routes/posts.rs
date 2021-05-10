@@ -66,7 +66,16 @@ pub fn get_post(title: String) -> JsonValue {
         .filter_map(Result::ok)
         .collect();
 
-    json!(post[0])
+    if post.is_empty() {
+        json!({
+            "status": "not found"
+        })
+    } else {
+        json!({
+            "status" : "ok",
+            "post" : post[0]
+        })
+    }
 }
 
 /// Get a paginated lists of post titles and descriptions
@@ -93,6 +102,7 @@ pub fn get_posts(limit: Option<usize>, offset: Option<usize>) -> JsonValue {
 
 fn read_post(path: PathBuf) -> Result<Post, Error> {
     let frontmatter = read_frontmatter(&path)?;
+
     // Read post body
     let file = File::open(&path)?;
     let reader = BufReader::new(file);

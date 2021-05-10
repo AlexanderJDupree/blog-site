@@ -117,5 +117,55 @@ fn test_get_posts_with_offset_greater_than_number_of_posts() {
         .and_then(|posts| posts.as_array())
         .unwrap();
 
-    assert_eq!(posts.len(), 0); // TODO magic number, this is the total number of md files in data/posts
+    assert_eq!(posts.len(), 0);
+}
+
+#[test]
+fn test_get_post_by_title() {
+    let response = &mut TEST_CLIENT
+        .get(format!("{}/posts/test-post-1", API))
+        .dispatch();
+    let json = parse_response(response);
+
+    let status = json.get("status").and_then(|status| status.as_str());
+    assert_eq!(status, Some("ok"));
+}
+
+#[test]
+fn test_get_missing_post_by_title() {
+    let response = &mut TEST_CLIENT
+        .get(format!("{}/posts/not-a-post-title", API))
+        .dispatch();
+    let json = parse_response(response);
+
+    let status = json.get("status").and_then(|status| status.as_str());
+    assert_eq!(status, Some("not found"));
+}
+
+#[test]
+fn test_frontmatter_parser() {
+    let response = &mut TEST_CLIENT
+        .get(format!("{}/posts/test-post-1", API))
+        .dispatch();
+    let json = parse_response(response);
+
+    let frontmatter = json["post"]["frontmatter"].as_object().unwrap();
+
+    assert_eq!(frontmatter["title"], "Test Post 1");
+    assert_eq!(frontmatter["image"], "/data/image/test.png");
+}
+
+#[test]
+fn test_get_posts_by_returned_link() {
+    // Get list of posts
+    let response = &mut TEST_CLIENT.get(format!("{}/posts", API)).dispatch();
+    let json = parse_response(response);
+
+    // Get a specific post via the returned link
+    let link = json["posts"][0]["link"].as_str().unwrap();
+    let response = &mut TEST_CLIENT.get(format!("{}{}", API, link)).dispatch();
+    let json = parse_response(response);
+
+    let status = json.get("status").and_then(|status| status.as_str());
+    assert_eq!(status, Some("ok"));
 }

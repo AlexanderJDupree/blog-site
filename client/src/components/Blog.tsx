@@ -7,22 +7,10 @@ import {
   Spinner,
 } from 'react-bootstrap';
 import useFetch, { FetchStatus } from '../hooks/useFetch';
+import { SERVER_URI, API } from '../utils/Config';
+import { PostPreview } from '../utils/Types';
 
 const Fade = require('react-reveal/Fade');
-
-interface Frontmatter {
-  title: string;
-  tags: string[];
-  categories: string[];
-  image: string;
-}
-
-interface PostPreview {
-  date: string;
-  link: string;
-  frontmatter: Frontmatter;
-  preview: string;
-}
 
 const Post = ({ date, link, frontmatter, preview }: PostPreview) => {
   const links = frontmatter.tags.map((tag, i) => {
@@ -36,7 +24,10 @@ const Post = ({ date, link, frontmatter, preview }: PostPreview) => {
   return (
     <Card className='post shadow'>
       <Card.Body className='body'>
-        <Card.Title className='title'>{frontmatter.title}</Card.Title>
+        <Card.Title className='title'>
+          <a href={link}>{frontmatter.title}</a>
+        </Card.Title>
+        <small className='text-muted'>{date}</small>
         <hr />
         <Card.Text className='text'>{preview.slice(0, 125)}...</Card.Text>
         {links}
@@ -49,7 +40,7 @@ const Blog = () => {
   const postsPerPage = 3;
   const [page, setPage] = useState(0);
   const res = useFetch<{ posts: PostPreview[] }>(
-    `http://localhost:8000/api/v1/posts?limit=1000`,
+    `${SERVER_URI}${API}/posts?limit=1000`,
     { posts: [] }
   );
 
@@ -65,29 +56,27 @@ const Blog = () => {
   switch (res.status) {
     case FetchStatus.Loading:
       return (
-        <Container className='blog justify-content-center' id='blog'>
-          <Spinner
-            animation='border'
-            role='status'
-            className='theme-secondary-light'
-          >
+        <Container className='blog d-flex justify-content-center' id='blog'>
+          <Spinner animation='border' role='status'>
             <span className='sr-only'>Loading...</span>
           </Spinner>
         </Container>
       );
     case FetchStatus.Error:
       return (
-        <Container className='blog justify-content-center' id='blog'>
+        <Container className='blog d-flex justify-content-center' id='blog'>
           <div className='mx-auto mt-4'>Something went wrong... 🤷‍♂️</div>
         </Container>
       );
 
     case FetchStatus.Loaded:
+      let posts = [...res.data.posts].reverse();
       return (
         <Container className='blog' id='blog'>
+          <h1 className='text-center'>Latest Posts</h1>
           <Fade right>
             <CardDeck>
-              {res.data.posts
+              {posts
                 .slice(page * postsPerPage, page * postsPerPage + postsPerPage)
                 .map((post) => {
                   return (

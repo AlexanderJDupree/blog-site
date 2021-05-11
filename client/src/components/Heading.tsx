@@ -49,7 +49,7 @@ const Heading = () => {
 
   return (
     <div className='heading' id='top'>
-      <Jumbotron className='pb-0'>
+      <Jumbotron className='mb-2 pb-0'>
         <Container>
           <Typing>
             <span className='banner prompt'>{'> '}</span>

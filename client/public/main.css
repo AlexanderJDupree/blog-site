@@ -118,10 +118,19 @@ body {
 
 .post .tag {
   background: var(--theme-primary);
+  color: var(--theme-text-primary);
   border-radius: 2px;
   padding: 0.2em 0.5em 0.3em;
   margin: 0.25em 0.1em;
   font-size: 0.7em;
   letter-spacing: 0.15ch;
   font-weight: 400;
+}
+
+.post .tag:hover {
+  background: var(--theme-secondary);
+}
+
+.article img {
+  max-width: 100%;
 }

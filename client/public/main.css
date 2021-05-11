@@ -111,3 +111,17 @@ body {
 .scrolldown .icon:hover {
   color: var(--theme-secondary-dark);
 }
+
+.post .title {
+  font-weight: bold;
+}
+
+.post .tag {
+  background: var(--theme-primary);
+  border-radius: 2px;
+  padding: 0.2em 0.5em 0.3em;
+  margin: 0.25em 0.1em;
+  font-size: 0.7em;
+  letter-spacing: 0.15ch;
+  font-weight: 400;
+}

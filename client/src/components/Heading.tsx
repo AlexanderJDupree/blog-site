@@ -36,21 +36,20 @@ const Heading = () => {
     </span>,
   ];
 
-  const nouns: React.ReactNode = ['Blogger', 'Father', 'Software Engineer'].map(
-    (noun, i) => {
-      return (
-        <>
-          <span className='banner text'>{noun}</span>
-          <Typing.Delay ms={1000} />
-          {i !== 2 ? <Typing.Backspace count={noun.length} /> : <></>}
-        </>
-      );
-    }
-  );
+  const nouns = ['Father', 'Blogger', 'Coder', 'Software Engineer'];
+  const animatedNouns = nouns.map((noun, i) => {
+    return (
+      <div key={i} className='d-inline'>
+        <span className='banner text'>{noun}</span>
+        <Typing.Delay ms={1000} />
+        {i !== 3 ? <Typing.Backspace count={noun.length} /> : <></>}
+      </div>
+    );
+  });
 
   return (
     <div className='heading' id='top'>
-      <Jumbotron className='m-0 pb-0'>
+      <Jumbotron className='pb-0'>
         <Container>
           <Typing>
             <span className='banner prompt'>{'> '}</span>
@@ -59,7 +58,7 @@ const Heading = () => {
             <br />
             <span className='banner prompt'>{'> '}</span>
             <span className='banner text'>I'm a </span>
-            {nouns}
+            {animatedNouns}
             <br />
             <Typing.Delay ms={1000} />
             <span className='banner prompt'>{'> '}</span>

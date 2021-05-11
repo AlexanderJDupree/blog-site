@@ -1,7 +1,7 @@
 import { Container, Jumbotron } from 'react-bootstrap';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import Typing from 'react-typing-animation';
-import { faBook } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import {
   faGithub,
   faLinkedin,
@@ -11,9 +11,9 @@ import ScrollDown from './ScrollDown';
 
 const Heading = () => {
   const networks = [
-    <span key='project' className='banner'>
-      <a href='https://github.com/AlexanderJDupree/blog-site'>
-        <FA icon={faBook} className='social-icon mr-3' />
+    <span key='email' className='banner'>
+      <a href='mailto: alexander.j.dupree@gmail.com'>
+        <FA icon={faEnvelope} className='social-icon mr-3' />
       </a>
     </span>,
 
@@ -48,7 +48,7 @@ const Heading = () => {
   });
 
   return (
-    <div className='heading' id='top'>
+    <div className='heading'>
       <Jumbotron className='mb-2 pb-0'>
         <Container>
           <Typing>
@@ -57,7 +57,7 @@ const Heading = () => {
             <Typing.Delay ms={2000} />
             <br />
             <span className='banner prompt'>{'> '}</span>
-            <span className='banner text'>I'm a </span>
+            <span className='banner text'>I am a </span>
             {animatedNouns}
             <br />
             <Typing.Delay ms={1000} />

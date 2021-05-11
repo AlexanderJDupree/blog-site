@@ -20,16 +20,16 @@ export default function Navigation() {
               <Nav.Link>Home</Nav.Link>
             </LinkContainer>
 
-            <LinkContainer to='/about'>
+            <LinkContainer to='#blog'>
               <Nav.Link>Blog</Nav.Link>
+            </LinkContainer>
+
+            <LinkContainer to='#about'>
+              <Nav.Link>About</Nav.Link>
             </LinkContainer>
 
             <LinkContainer to='/about'>
               <Nav.Link>Projects</Nav.Link>
-            </LinkContainer>
-
-            <LinkContainer to='/about'>
-              <Nav.Link>About</Nav.Link>
             </LinkContainer>
 
             <LinkContainer to='/about'>

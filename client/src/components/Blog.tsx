@@ -37,7 +37,7 @@ const Post = ({ date, link, frontmatter, preview }: PostPreview) => {
 };
 
 const Blog = () => {
-  const postsPerPage = 3;
+  const postsPerPage = 6;
   const [page, setPage] = useState(0);
   const res = useFetch<{ posts: PostPreview[] }>(
     `${SERVER_URI}${API}/posts?limit=1000`,
@@ -73,14 +73,15 @@ const Blog = () => {
       let posts = [...res.data.posts].reverse();
       return (
         <Container className='blog' id='blog'>
-          <h1 className='text-center'>Latest Posts</h1>
+          <h3 className='text-center heading'>Latest Posts</h3>
           <Fade right>
-            <CardDeck>
+            <div className='blog-grid'>
               {posts
                 .slice(page * postsPerPage, page * postsPerPage + postsPerPage)
                 .map((post) => {
                   return (
                     <Post
+                      key={post.frontmatter.title}
                       date={post.date}
                       link={post.link}
                       frontmatter={post.frontmatter}
@@ -88,7 +89,7 @@ const Blog = () => {
                     />
                   );
                 })}
-            </CardDeck>
+            </div>
             <Pagination className='mt-3 mx-auto justify-content-center'>
               {items}
             </Pagination>

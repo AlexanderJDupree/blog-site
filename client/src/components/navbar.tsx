@@ -1,40 +1,43 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
+import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
+import { faLaptopCode } from '@fortawesome/free-solid-svg-icons';
 
-interface NavItemProps {
-  path: string;
-  text: string;
-  activePath: string;
-}
-
-export const NavItem = ({ path, text, activePath }: NavItemProps) => {
-  let active = activePath === path ? 'active' : '';
+export default function Navigation() {
   return (
-    <li className={`nav-item ${active}`}>
-      <Link className='nav-link' to={path}>
-        {text}
-      </Link>
-    </li>
-  );
-};
+    <Navbar collapseOnSelect expand='md'>
+      <Container>
+        <LinkContainer to='/'>
+          <Navbar.Brand>
+            <FA icon={faLaptopCode} className='brand-icon mr-2' />
+            <span id='brand-text'>/dev/null</span>
+          </Navbar.Brand>
+        </LinkContainer>
+        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+        <Navbar.Collapse id='responsive-navbar-nav'>
+          <Nav className='ml-auto'>
+            <LinkContainer to='/'>
+              <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
 
-export default function Navbar() {
-  let loc = useLocation().pathname;
+            <LinkContainer to='/about'>
+              <Nav.Link>Blog</Nav.Link>
+            </LinkContainer>
 
-  return (
-    <nav className='navbar navbar-expand navbar-dark bg-dark'>
-      <div className='container'>
-        <Link className='navbar-brand' to='/'>
-          adupree
-        </Link>
+            <LinkContainer to='/about'>
+              <Nav.Link>Projects</Nav.Link>
+            </LinkContainer>
 
-        <div>
-          <ul className='navbar-nav ml-auto'>
-            <NavItem path='/' activePath={loc} text='Home' />
-            <NavItem path='/about' activePath={loc} text='About' />
-          </ul>
-        </div>
-      </div>
-    </nav>
+            <LinkContainer to='/about'>
+              <Nav.Link>About</Nav.Link>
+            </LinkContainer>
+
+            <LinkContainer to='/about'>
+              <Nav.Link>Contact</Nav.Link>
+            </LinkContainer>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }

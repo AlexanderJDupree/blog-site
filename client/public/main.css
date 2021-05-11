@@ -13,12 +13,12 @@
   --red: #ff0000;
   --green: #006400;
 
-  --theme-primary: #027bee;
-  --theme-primary-light: #65a9ff;
-  --theme-primary-dark: #0050bb;
-  --theme-secondary: #546e7a;
-  --theme-secondary-light: #819ca9;
-  --theme-secondary-dark: #394243;
+  --theme-primary: #99aabf;
+  --theme-primary-light: #dce2f2;
+  --theme-primary-dark: #6d808c;
+  --theme-secondary: #158fbf;
+  --theme-secondary-light: #bbe2f2;
+  --theme-secondary-dark: #0e5673;
   --theme-error: #b00020;
   --theme-text-primary: #252525;
   --theme-text-secondary: #ffffff;
@@ -64,4 +64,50 @@ body {
 
 .theme-text-secondary {
   color: var(--theme-text-secondary);
+}
+
+.nav-link {
+  font-weight: bold;
+  font-size: small;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  z-index: 100;
+  color: var(--theme-primary-dark) !important;
+}
+
+.nav-link:hover,
+.active {
+  color: var(--theme-secondary) !important;
+}
+
+.prompt {
+  font-weight: bold;
+  color: var(--theme-secondary);
+}
+
+.brand-icon {
+  color: var(--theme-secondary);
+}
+
+#brand-text {
+  font-family: monospace;
+  color: var(--theme-primary-dark);
+}
+
+.banner {
+  font-family: monospace;
+  font-size: 2rem;
+}
+
+.banner .social-icon {
+  color: var(--theme-secondary);
+}
+
+.scrolldown .icon {
+  color: var(--theme-secondary);
+  font-size: 2rem;
+}
+
+.scrolldown .icon:hover {
+  color: var(--theme-secondary-dark);
 }

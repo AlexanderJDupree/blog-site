@@ -48,8 +48,8 @@ const Heading = () => {
   });
 
   return (
-    <div className='heading'>
-      <Jumbotron className='mb-2 pb-0'>
+    <div className='heading' id='heading'>
+      <Jumbotron className='mb-3 pb-0 banner'>
         <Container>
           <Typing>
             <span className='banner prompt'>{'> '}</span>

@@ -1,11 +1,5 @@
 import { useState } from 'react';
-import {
-  Card,
-  CardDeck,
-  Container,
-  Pagination,
-  Spinner,
-} from 'react-bootstrap';
+import { Card, Container, Pagination, Spinner } from 'react-bootstrap';
 import useFetch, { FetchStatus } from '../hooks/useFetch';
 import { SERVER_URI, API } from '../utils/Config';
 import { PostPreview } from '../utils/Types';
@@ -15,7 +9,7 @@ const Fade = require('react-reveal/Fade');
 const Post = ({ date, link, frontmatter, preview }: PostPreview) => {
   const links = frontmatter.tags.map((tag, i) => {
     return (
-      <span className='tag' key={i}>
+      <span className='tag m-1' key={i}>
         #{tag}
       </span>
     );

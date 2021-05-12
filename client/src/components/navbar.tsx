@@ -1,9 +1,30 @@
 import { LinkContainer } from 'react-router-bootstrap';
+import { useLocation } from 'react-router-dom';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faLaptopCode } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-scroll';
+
+interface LinkWrapperProps {
+  onMain: boolean;
+  to: string;
+  children?: React.ReactNode;
+}
+
+const LinkWrapper = ({ onMain, to, children }: LinkWrapperProps) => {
+  return onMain ? (
+    <Link activeClass='active' to={to} spy={true} smooth={true} duration={500}>
+      {children}
+    </Link>
+  ) : (
+    <LinkContainer to={`/#${to}`}>{children}</LinkContainer>
+  );
+};
 
 export default function Navigation() {
+  const location = useLocation();
+  const onMain = location.pathname === '/';
+
   return (
     <Navbar collapseOnSelect expand='md'>
       <Container>
@@ -16,25 +37,21 @@ export default function Navigation() {
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='ml-auto'>
-            <LinkContainer to='/'>
-              <Nav.Link>Home</Nav.Link>
-            </LinkContainer>
+            <LinkWrapper onMain={onMain} to='top'>
+              <Nav.Link as='div'>Home</Nav.Link>
+            </LinkWrapper>
 
-            <LinkContainer to='#blog'>
-              <Nav.Link>Blog</Nav.Link>
-            </LinkContainer>
+            <LinkWrapper onMain={onMain} to='blog'>
+              <Nav.Link as='div'>Blog</Nav.Link>
+            </LinkWrapper>
 
-            <LinkContainer to='#about'>
-              <Nav.Link>About</Nav.Link>
-            </LinkContainer>
+            <LinkWrapper onMain={onMain} to='about'>
+              <Nav.Link as='div'>About</Nav.Link>
+            </LinkWrapper>
 
-            <LinkContainer to='/about'>
-              <Nav.Link>Projects</Nav.Link>
-            </LinkContainer>
-
-            <LinkContainer to='/about'>
-              <Nav.Link>Contact</Nav.Link>
-            </LinkContainer>
+            <LinkWrapper onMain={onMain} to='projects'>
+              <Nav.Link as='div'>Projects</Nav.Link>
+            </LinkWrapper>
           </Nav>
         </Navbar.Collapse>
       </Container>

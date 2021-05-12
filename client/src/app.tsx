@@ -1,5 +1,14 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Navbar, Heading, Blog, Post, About, Footer } from './components';
+import {
+  Navbar,
+  Heading,
+  Blog,
+  Post,
+  About,
+  Footer,
+  Projects,
+  NotFound,
+} from './components';
 
 const Home = () => {
   return (
@@ -7,6 +16,7 @@ const Home = () => {
       <Heading />
       <Blog />
       <About />
+      <Projects />
     </>
   );
 };
@@ -19,6 +29,7 @@ export default function App() {
         <Switch>
           <Route path='/posts/:title' component={Post} />
           <Route path='/' component={Home} />
+          <Route path='*' component={NotFound} />
         </Switch>
         <Footer />
       </Router>

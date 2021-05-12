@@ -35,9 +35,9 @@ const About = () => {
               <p className='contact-details mb-0'>
                 <span>Alexander DuPree</span>
                 <br />
-                <span>971.284.1416</span>
+                <span>(971) 284-1416</span>
                 <br />
-                <span>alexander.j.dupree@gmail.com</span>
+                <span>work@adupree.dev</span>
                 <br />
               </p>
             </Col>

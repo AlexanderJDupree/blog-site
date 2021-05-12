@@ -35,7 +35,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className='pb-3'>
+    <footer className='pb-3' id='bottom'>
       <div id='go-top'>
         <a className='scrollup' title='Scroll To Top' href='#top'>
           <FA icon={faChevronCircleUp} className='icon' />
@@ -47,7 +47,7 @@ const Footer = () => {
           <div className='copyright'>
             <small>&copy; Copyright 2021 Alex DuPree</small>
             <small className='divider'> | </small>
-            <small>Built with Rust 🦀, Rocket 🚀, React ⚛️, Typescript </small>
+            <small>Built with Rust 🦀 Rocket 🚀 React ⚛️ Typescript </small>
             <a href='https://emoji.gg/emoji/8584-typescript'>
               <img
                 src='https://emoji.gg/assets/emoji/8584-typescript.png'

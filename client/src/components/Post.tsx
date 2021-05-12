@@ -23,7 +23,11 @@ const components = {
         {...props}
       />
     ) : (
-      <code className={className} {...props} />
+      <code
+        className={className}
+        {...props}
+        children={String(children).replace(/\n$/, '')}
+      />
     );
   },
 };
@@ -69,6 +73,7 @@ const Post = () => {
               {res.data.post.body}
             </ReactMarkdown>
           </Fade>
+          <br />
         </Container>
       );
   }

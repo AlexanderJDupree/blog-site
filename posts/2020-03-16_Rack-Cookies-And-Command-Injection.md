@@ -11,8 +11,7 @@ tags:
   - ruby
 ---
 
-This guide will outline how to complete the Rack Cookies
-and command injection exercise from pentesterlab
+This guide will outline how to complete the Rack Cookies and command injection exercise from pentesterlab
 
 You can either watch the embedded video tutorial or read the notes below.
 

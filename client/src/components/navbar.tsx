@@ -31,7 +31,9 @@ export default function Navigation() {
         <LinkContainer to='/'>
           <Navbar.Brand>
             <FA icon={faLaptopCode} className='brand-icon mr-2' />
-            <span id='brand-text'>/dev/null</span>
+            <span id='brand-text' className='brand-text'>
+              /dev/null
+            </span>
           </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />

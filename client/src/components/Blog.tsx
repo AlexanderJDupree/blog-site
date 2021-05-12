@@ -3,6 +3,8 @@ import { Card, Container, Pagination, Spinner } from 'react-bootstrap';
 import useFetch, { FetchStatus } from '../hooks/useFetch';
 import { SERVER_URI, API } from '../utils/Config';
 import { PostPreview } from '../utils/Types';
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
 
 const Fade = require('react-reveal/Fade');
 
@@ -18,13 +20,21 @@ const Post = ({ date, link, frontmatter, preview }: PostPreview) => {
   return (
     <Card className='post shadow'>
       <Card.Body className='body'>
-        <Card.Title className='title'>
-          <a href={link}>{frontmatter.title}</a>
-        </Card.Title>
+        <a href={link}>
+          <Card.Title className='title'>{frontmatter.title}</Card.Title>
+        </a>
         <small className='text-muted'>{date}</small>
         <hr />
-        <Card.Text className='text'>{preview.slice(0, 125)}...</Card.Text>
-        {links}
+        <div className='preview'>
+          <ReactMarkdown remarkPlugins={[gfm]} className='text'>
+            {preview}
+          </ReactMarkdown>
+          <a href={link}>
+            <span>...</span>
+          </a>
+        </div>
+        <br />
+        <div className='tags'>{links}</div>
       </Card.Body>
     </Card>
   );

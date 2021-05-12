@@ -24,6 +24,26 @@
   --theme-text-secondary: #ffffff;
 }
 
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 1.2em;
@@ -79,6 +99,10 @@ body {
   cursor: pointer;
 }
 
+.brand-text:hover {
+  color: var(--theme-secondary) !important;
+}
+
 .nav-link:hover,
 .active {
   color: var(--theme-secondary) !important;
@@ -109,6 +133,10 @@ body {
   color: var(--theme-secondary);
 }
 
+.banner .social-icon:hover {
+  color: var(--theme-secondary-dark);
+}
+
 .scrolldown {
   position: absolute;
   bottom: -4px;
@@ -128,11 +156,30 @@ body {
 }
 
 .post .title {
-  font-weight: 400;
+  font-weight: 600;
+  font-family: 'Roboto Mono', monospace;
+  color: var(--theme-secondary-dark);
+}
+
+.post .text-muted {
+  font-family: 'Roboto Mono', monospace;
 }
 
 .post .text {
-  font-weight: 200;
+  display: inline-block;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.post .preview {
+  max-height: 180px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.post .tags {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .tag {

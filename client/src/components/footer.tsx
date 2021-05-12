@@ -48,14 +48,12 @@ const Footer = () => {
             <small>&copy; Copyright 2021 Alex DuPree</small>
             <small className='divider'> | </small>
             <small>Built with Rust 🦀 Rocket 🚀 React ⚛️ Typescript </small>
-            <a href='https://emoji.gg/emoji/8584-typescript'>
-              <img
-                src='https://emoji.gg/assets/emoji/8584-typescript.png'
-                width='20px'
-                height='20px'
-                alt='TypeScript'
-              />
-            </a>
+            <img
+              src='/assets/images/typescript-logo.png'
+              width='20px'
+              height='20px'
+              alt='TypeScript'
+            />
           </div>
         </Row>
       </Container>

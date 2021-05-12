@@ -36,9 +36,13 @@ fn handle_not_found(req: &Request) -> JsonValue {
 }
 
 pub fn rocket() -> rocket::Rocket {
+    let cors = rocket_cors::CorsOptions::default().to_cors().expect("Error creating CORS Fairing");
     let public = std::env::var("STATIC_DIR").unwrap_or_else(|_| "./client/build".to_string());
 
+    println!("{:?}", cors);
+
     rocket::ignite()
+        .attach(cors)
         .mount(
             "/api/v1",
             routes![

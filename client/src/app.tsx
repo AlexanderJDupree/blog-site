@@ -1,15 +1,35 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Navbar, Footer } from './components';
-import { Home, About } from './pages';
+import {
+  Navbar,
+  Heading,
+  Blog,
+  Post,
+  About,
+  Footer,
+  Projects,
+  NotFound,
+} from './components';
+
+const Home = () => {
+  return (
+    <>
+      <Heading />
+      <Blog />
+      <About />
+      <Projects />
+    </>
+  );
+};
 
 export default function App() {
   return (
-    <main className='App'>
+    <main className='App' id='top'>
       <Router>
         <Navbar />
         <Switch>
-          <Route path='/about' exact component={() => <About />} />
-          <Route path='/' exact component={() => <Home />} />
+          <Route path='/posts/:title' component={Post} />
+          <Route path='/' component={Home} />
+          <Route path='*' component={NotFound} />
         </Switch>
         <Footer />
       </Router>

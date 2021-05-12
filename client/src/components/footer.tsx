@@ -1,11 +1,64 @@
-export default function Footer() {
+import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
+import { faBook, faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
+import {
+  faGithub,
+  faLinkedin,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons';
+import { Container, Row } from 'react-bootstrap';
+
+const Footer = () => {
+  const networks = [
+    <span key='project' className='footer'>
+      <a href='https://github.com/AlexanderJDupree/blog-site'>
+        <FA icon={faBook} className='social-icon mr-3' />
+      </a>
+    </span>,
+
+    <span key='github' className='footer'>
+      <a href='https://github.com/AlexanderJDupree'>
+        <FA icon={faGithub} className='social-icon mr-3' />
+      </a>
+    </span>,
+
+    <span key='twitter' className='footer'>
+      <a href='https://twitter.com/dev_null42'>
+        <FA icon={faTwitter} className='social-icon mr-3' />
+      </a>
+    </span>,
+
+    <span key='linkedin' className='footer'>
+      <a href='https://www.linkedin.com/in/alexanderdupree/'>
+        <FA icon={faLinkedin} className='social-icon mr-3' />
+      </a>
+    </span>,
+  ];
+
   return (
-    <div className='footer'>
-      <footer className='py-5 bg-dark fixed-bottom'>
-        <div className='container'>
-          <p className='m-0 text-center text-white'>some text and stuff</p>
-        </div>
-      </footer>
-    </div>
+    <footer className='pb-3' id='bottom'>
+      <div id='go-top'>
+        <a className='scrollup' title='Scroll To Top' href='#top'>
+          <FA icon={faChevronCircleUp} className='icon' />
+        </a>
+      </div>
+      <Container>
+        <Row className='d-flex justify-content-center'>{networks}</Row>
+        <Row className='d-flex justify-content-center'>
+          <div className='copyright'>
+            <small>&copy; Copyright 2021 Alex DuPree</small>
+            <small className='divider'> | </small>
+            <small>Built with Rust 🦀 Rocket 🚀 React ⚛️ Typescript </small>
+            <img
+              src='/assets/images/typescript-logo.png'
+              width='20px'
+              height='20px'
+              alt='TypeScript'
+            />
+          </div>
+        </Row>
+      </Container>
+    </footer>
   );
-}
+};
+
+export default Footer;

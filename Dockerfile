@@ -1,15 +1,11 @@
-FROM liuechong/rustup
+FROM rustlang/rust:nightly as builder
 
-ENV ROCKET_ADDRESS=0.0.0.0
+WORKDIR /usr/src/app
 
-ENV ROCKET_PORT=8080
-
-ADD . /app
-
-WORKDIR /app
-
-RUN rustup default nightly
+COPY . .
 
 RUN cargo build --release
 
-CMD ["cargo", "run"]
+EXPOSE 8080
+
+CMD [ "cargo", "run", "--release"]

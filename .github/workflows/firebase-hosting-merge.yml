@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: cd client && yarn run deploy
         env:
-          REACT_APP_SERVER_URI: https://todo
+          REACT_APP_SERVER_URI: https://blog-site-server-fkeif7njeq-uw.a.run.app
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'

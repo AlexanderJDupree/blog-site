@@ -37,8 +37,6 @@ fn handle_not_found(req: &Request) -> JsonValue {
 pub fn rocket() -> rocket::Rocket {
     let cors = rocket_cors::CorsOptions::default().to_cors().expect("Error creating CORS Fairing");
 
-    println!("{}", public);
-
     rocket::ignite()
         .attach(cors)
         .mount(

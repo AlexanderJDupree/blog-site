@@ -14,7 +14,6 @@ extern crate rocket_contrib;
 use rocket::Request;
 use rocket_contrib::json;
 use rocket_contrib::json::JsonValue;
-use rocket_contrib::serve::StaticFiles;
 
 pub mod routes;
 
@@ -37,9 +36,6 @@ fn handle_not_found(req: &Request) -> JsonValue {
 
 pub fn rocket() -> rocket::Rocket {
     let cors = rocket_cors::CorsOptions::default().to_cors().expect("Error creating CORS Fairing");
-    let public = std::env::var("STATIC_DIR").unwrap_or_else(|_| "./client/build".to_string());
-
-    println!("{:?}", cors);
 
     rocket::ignite()
         .attach(cors)
@@ -51,6 +47,5 @@ pub fn rocket() -> rocket::Rocket {
                 routes::posts::get_posts
             ],
         )
-        .mount("/", StaticFiles::from(public))
         .register(catchers![handle_not_found])
 }

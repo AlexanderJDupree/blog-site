@@ -61,7 +61,7 @@ const Blog = () => {
     case FetchStatus.Loading:
       return (
         <Container className='blog d-flex justify-content-center' id='blog'>
-          <Spinner animation='border' role='status'>
+          <Spinner animation='border' role='status' className='m-5'>
             <span className='sr-only'>Loading...</span>
           </Spinner>
         </Container>
@@ -69,7 +69,7 @@ const Blog = () => {
     case FetchStatus.Error:
       return (
         <Container className='blog d-flex justify-content-center' id='blog'>
-          <div className='mx-auto mt-4'>Something went wrong... 🤷‍♂️</div>
+          <div className='mx-auto m-5'>Something went wrong... 🤷‍♂️</div>
         </Container>
       );
 

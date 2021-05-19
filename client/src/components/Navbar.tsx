@@ -13,7 +13,14 @@ interface LinkWrapperProps {
 
 const LinkWrapper = ({ onMain, to, children }: LinkWrapperProps) => {
   return onMain ? (
-    <Link activeClass='active' to={to} spy={true} smooth={true} duration={500}>
+    <Link
+      activeClass='active'
+      to={to}
+      spy={true}
+      smooth={true}
+      duration={500}
+      title={`Go to ${to}`}
+    >
       {children}
     </Link>
   ) : (

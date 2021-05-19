@@ -37,7 +37,7 @@ const About = () => {
                 <br />
                 <span>(971) 284-1416</span>
                 <br />
-                <span>work@adupree.dev</span>
+                <span>alex@adupree.dev</span>
                 <br />
               </p>
             </Col>

@@ -10,6 +10,17 @@ Source code and content for my personal portfolio and blogging site hosted at [a
 - [Typescript](https://www.typescriptlang.org/) - Typed Javascript
 - [Firebase](https://firebase.google.com/) - Hosting and platform service
 
+## Usage
+
+You can visit the deployed website at [adupree.dev](https://adupree.dev), but if you really want to run it locally
+the following will get you going:
+
+- First, make sure `rustup` is installed, along withe the latest `nightly` compiler
+- You will also need to install the client dependencies first with `cd client && yarn install`.
+- Use `cargo run` to start the server on `localhost:8080`.
+- Then in a seperate terminal use `cd client && yarn start` to startup the client on `localhost:3000`.
+- Lastly, you can use `cargo test` to run the servers unit tests.
+
 ## Project Writeup
 
 This site was built as a final project for CS410-Rust at Portland State University.

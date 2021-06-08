@@ -43,7 +43,7 @@ const About = () => {
             </Col>
             <Col xs={5}>
               <a
-                href='/assets/docs/AlexDuPree_Resume2021.pdf'
+                href='/assets/docs/AlexDupree_Resume2021.pdf'
                 className='btn btn-info mt-5 ml-1'
               >
                 <FA icon={faFileDownload} className='download-resume mr-2' />

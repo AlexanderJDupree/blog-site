@@ -46,3 +46,7 @@ This comes with it's own problems though, namely these static markdown files are
 The biggeset issue i've had with this project is time! Unfortunately, capstone, other projects, and kids, all kept eating away the little time I had for working on this project and I didn't get to add all the features I wanted. Another big time sink was the frontend. As mentioned earlier, I've been learning React + Typescript, but that doesn't mean I am any good at it. I had a specific look I was going for in the frontend, but was really hamstringed by my lack of knowledge in how to actually implement it. I did, eventually, get the frontend to a level of polish that I can present, however the process was extremely time consuming. In retrospect I should have just settled for a very simple UI layout and just used an HTML template or something so that I could've focused on the actual Rust part of the project more.
 
 Since this is my personal site, and one that I plan on showcasing in upcoming interviews, I do plan on continuing this project. Eventually, the Rust portion of the project will be a lot more substantial and I look forward to continue learning about Rust and it's wonderful web ecosystem along the way.
+
+## License
+
+See [LICENSE](https://github.com/AlexanderJDupree/blog-site/blob/main/LICENSE) for details.

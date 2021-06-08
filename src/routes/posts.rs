@@ -15,6 +15,8 @@ lazy_static! {
         std::env::var("POSTS_DIR").unwrap_or_else(|_| "posts".to_string());
 }
 
+/// Frontmatter is located at the top of each .md post and contains important
+/// metadata about the blog post.
 #[derive(Debug, Serialize, Deserialize)]
 struct Frontmatter {
     title: String,
@@ -40,6 +42,8 @@ impl Default for Frontmatter {
     }
 }
 
+/// Post preview returned when asking for a list of posts and only contains the
+/// blog posts metadata, along with the first line of the body
 #[derive(Debug, Serialize, Deserialize)]
 struct PostPreview {
     date: String, // TODO use Datetime<UTC>
@@ -48,6 +52,7 @@ struct PostPreview {
     preview: String,
 }
 
+/// Acutal post data, contains the frontmatter and the markdown text in the body
 #[derive(Debug, Serialize, Deserialize)]
 struct Post {
     frontmatter: Frontmatter,
@@ -100,6 +105,8 @@ pub fn get_posts(limit: Option<usize>, offset: Option<usize>) -> JsonValue {
     })
 }
 
+/// Reads the post into a Post object or returns an IO error if the post does
+/// not exist.
 fn read_post(path: PathBuf) -> Result<Post, Error> {
     let frontmatter = read_frontmatter(&path)?;
 
@@ -119,6 +126,8 @@ fn read_post(path: PathBuf) -> Result<Post, Error> {
     Ok(Post { frontmatter, body })
 }
 
+/// Reads the YAML frontmatter from the top of the .md file and parses it into
+/// the Frontmatter structure.
 fn read_frontmatter(path: &Path) -> Result<Frontmatter, Error> {
     let file = File::open(&path)?;
     let reader = BufReader::new(file);
@@ -133,6 +142,8 @@ fn read_frontmatter(path: &Path) -> Result<Frontmatter, Error> {
     Ok(serde_yaml::from_str(&frontmatter).unwrap_or_default())
 }
 
+/// Reads the first line of the actual post content and parses it into the
+/// PostPreview structure
 fn fill_post_preview(post: PathBuf) -> Result<PostPreview, Error> {
     // Parse filename into date, post title
     let components: Vec<&str> = post

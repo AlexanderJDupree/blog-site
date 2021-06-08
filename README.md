@@ -16,6 +16,7 @@ You can visit the deployed website at [adupree.dev](https://adupree.dev), but if
 the following will get you going:
 
 - First, make sure `rustup` is installed, along with the latest `nightly` compiler
+- **Emphasis** on `nightly` version here since it is required to compile the `rocket` framework.
 - You will also need to install the client dependencies first with `cd client && yarn install`.
 - Use `cargo run` to start the server on `localhost:8080`.
 - Then in a seperate terminal use `cd client && yarn start` to startup the client on `localhost:3000`.

@@ -25,6 +25,7 @@ pub fn health_check() -> JsonValue {
     })
 }
 
+/// Generic 404 handler for Rocket
 #[catch(404)]
 fn handle_not_found(req: &Request) -> JsonValue {
     json!({
@@ -34,8 +35,11 @@ fn handle_not_found(req: &Request) -> JsonValue {
     })
 }
 
+/// Creates the rocket server instance
 pub fn rocket() -> rocket::Rocket {
-    let cors = rocket_cors::CorsOptions::default().to_cors().expect("Error creating CORS Fairing");
+    let cors = rocket_cors::CorsOptions::default()
+        .to_cors()
+        .expect("Error creating CORS Fairing");
 
     rocket::ignite()
         .attach(cors)

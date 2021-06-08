@@ -4,7 +4,7 @@ Source code and content for my personal portfolio and blogging site hosted at [a
 
 ## Built With
 
-- [Rust](https://www.rust-lang.org/) - Perforamant and safe systems language
+- [Rust](https://www.rust-lang.org/) - Performant and safe systems language
 - [Rocket](https://socket.io/) - Rust web framework
 - [React](https://reactjs.org/) - Front end framework
 - [Typescript](https://www.typescriptlang.org/) - Typed Javascript
@@ -15,7 +15,7 @@ Source code and content for my personal portfolio and blogging site hosted at [a
 You can visit the deployed website at [adupree.dev](https://adupree.dev), but if you really want to run it locally
 the following will get you going:
 
-- First, make sure `rustup` is installed, along withe the latest `nightly` compiler
+- First, make sure `rustup` is installed, along with the latest `nightly` compiler
 - You will also need to install the client dependencies first with `cd client && yarn install`.
 - Use `cargo run` to start the server on `localhost:8080`.
 - Then in a seperate terminal use `cd client && yarn start` to startup the client on `localhost:3000`.
